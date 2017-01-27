@@ -401,17 +401,42 @@
   <field name="_text_" type="text_general" multiValued="true" indexed="true" stored="false"/>
   <field name="_version_" type="long" indexed="true" stored="false"/>
   <field name="cat" type="strings"/>
+  <field name="content" type="strings"/>
+  <field name="content_encoding" type="strings"/>
+  <field name="content_type" type="strings"/>
+  <field name="dc_title" type="strings"/>
   <field name="features" type="strings"/>
   <field name="id" type="string" multiValued="false" indexed="true" required="true" stored="true"/>
   <field name="inStock" type="booleans"/>
   <field name="includes" type="strings"/>
   <field name="manu" type="strings"/>
   <field name="name" type="strings"/>
+  <field name="og_image" type="strings"/>
+  <field name="og_type" type="strings"/>
+  <field name="og_url" type="strings"/>
   <field name="payloads" type="strings"/>
   <field name="popularity" type="tlongs"/>
   <field name="price" type="tdoubles"/>
   <field name="store" type="strings"/>
+  <field name="stream_content_type" type="strings"/>
+  <field name="stream_size" type="strings"/>
+  <field name="title" type="strings"/>
+  <field name="twitter_app_country" type="strings"/>
+  <field name="twitter_app_id_googleplay" type="strings"/>
+  <field name="twitter_app_id_ipad" type="tlongs"/>
+  <field name="twitter_app_id_iphone" type="tlongs"/>
+  <field name="twitter_app_name_googleplay" type="strings"/>
+  <field name="twitter_app_name_ipad" type="strings"/>
+  <field name="twitter_app_name_iphone" type="strings"/>
+  <field name="twitter_app_url_googleplay" type="strings"/>
+  <field name="twitter_app_url_ipad" type="strings"/>
+  <field name="twitter_app_url_iphone" type="strings"/>
+  <field name="twitter_card" type="strings"/>
+  <field name="twitter_description" type="strings"/>
+  <field name="twitter_domain" type="strings"/>
+  <field name="twitter_title" type="strings"/>
   <field name="weight" type="tdoubles"/>
+  <field name="x_parsed_by" type="strings"/>
   <dynamicField name="*_txt_en_split_tight" type="text_en_splitting_tight" indexed="true" stored="true"/>
   <dynamicField name="*_descendent_path" type="descendent_path" indexed="true" stored="true"/>
   <dynamicField name="*_ancestor_path" type="ancestor_path" indexed="true" stored="true"/>
