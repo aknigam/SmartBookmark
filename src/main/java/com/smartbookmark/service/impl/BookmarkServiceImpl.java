@@ -26,17 +26,23 @@ public class BookmarkServiceImpl implements BookmarkService {
      */
     @Override
     public void addBookmark(Bookmark bookmark) {
-        int id = bookmarkRepository.persist(bookmark);
+        int id = bookmarkRepository.save(bookmark);
+        bookmarkIndex.index(bookmark.getUrl());
     }
 
     @Override
     public void updateBookmark(Bookmark bookmark) {
-
+        bookmarkRepository.update(bookmark);
+        bookmarkIndex.index(bookmark.getUrl());
     }
 
     @Override
     public void deleteBookmark(Bookmark bookmark) {
-
+        bookmarkRepository.delete(bookmark);
+        /**
+         * Index should be removed only if it not being used in any other user's bookmark
+         */
+        bookmarkIndex.remove(bookmark.getUrl());
     }
 
     @Override

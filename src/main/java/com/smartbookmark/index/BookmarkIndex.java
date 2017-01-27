@@ -10,4 +10,8 @@ import java.util.List;
 public interface BookmarkIndex {
 
     List<Bookmark> search(String searchQuery);
+
+    void index(String url);
+
+    void remove(String url);
 }

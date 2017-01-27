@@ -15,4 +15,19 @@ public class Bookmark {
 
     private String url;
 
+    public User getUser() {
+        return user;
+    }
+
+    public Folder getFolder() {
+        return folder;
+    }
+
+    public List<Integer> getTagIds() {
+        return tagIds;
+    }
+
+    public String getUrl() {
+        return url;
+    }
 }
