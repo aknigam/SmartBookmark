@@ -2,6 +2,8 @@ package com.smartbookmark.service;
 
 import com.smartbookmark.entity.Bookmark;
 import com.smartbookmark.entity.User;
+import com.smartbookmark.exception.BookmarkSearchException;
+import com.smartbookmark.service.impl.SearchCriteria;
 
 import java.util.List;
 
@@ -17,6 +19,6 @@ public interface BookmarkService {
 
     void deleteBookmark(Bookmark bookmark);
 
-    List<Bookmark> searchInUserBookmarks(String searchQuery, User user);
+    List<Bookmark> searchInUserBookmarks(SearchCriteria searchQuery) throws BookmarkSearchException ;
 
 }

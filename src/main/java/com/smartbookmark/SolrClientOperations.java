@@ -11,6 +11,7 @@ import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.util.ContentStreamBase;
 import org.apache.solr.common.util.NamedList;
+import org.apache.solr.common.util.SimpleOrderedMap;
 import org.apache.solr.handler.extraction.ExtractingParams;
 
 import java.io.File;
@@ -55,23 +56,31 @@ public class SolrClientOperations {
     private void indexFromUrl() throws IOException, SolrServerException {
 
         ContentStreamUpdateRequest up = new ContentStreamUpdateRequest("/update/extract");
-        up.addContentStream(new ContentStreamBase.URLStream(new URL("http://stackoverflow.com/questions/9452701/ukkonens-suffix-tree-algorithm-in-plain-english/9513423#9513423")));
-        up.setParam("literal.id", "stackoverflow3");
+        String url = "http://stackoverflow.com/questions/28448265/solr-error-document-is-missing-mandatory-uniquekey-field-id";
+        up.addContentStream(new ContentStreamBase.URLStream(new URL(url)));
+        up.setParam("literal.id", "stackoverflow7");
+        up.setParam("literal.url", url);
         up.setAction(AbstractUpdateRequest.ACTION.COMMIT, true, true);
 //        NamedList<Object> result = solr.request(up);
+//        Integer status = (Integer) ((SimpleOrderedMap) result.get("responseHeader")).get("status");
+//        solr.deleteById("stackoverflow1");
+//        solr.deleteById("stackoverflow2");
+//        solr.deleteById("stackoverflow3");
 
-        solr.deleteById("stackoverflow1");
-        solr.deleteById("stackoverflow2");
-        solr.deleteById("stackoverflow3");
+//        solr.commit();
+        SolrQuery sorlQuery = new SolrQuery("twitter_title:*solr* AND (id:stackoverflow7 OR id:stackoverflow6)");
 
-        solr.commit();
+        QueryResponse rsp = solr.query(sorlQuery);
+        int noOfResults = rsp.getResults().size();
+        Object urlField = rsp.getResults().get(0).getFieldValue("url");
+        System.out.println(urlField);
 
-        QueryResponse rsp = solr.query(new SolrQuery("content:*Basic principle*"));
+        rsp = solr.query(new SolrQuery("content:*Basic principle*"));
         System.out.println(" No. of docs\t "+ rsp.getResults().getNumFound() );
 
         for (int i = 0; i < rsp.getResults().getNumFound(); i++) {
-            SolrDocument result = rsp.getResults().get(i);
-            System.out.println(result.getFieldValue("id"));
+            SolrDocument solrDocument = rsp.getResults().get(i);
+            System.out.println(solrDocument.getFieldValue("id"));
         }
 
     }

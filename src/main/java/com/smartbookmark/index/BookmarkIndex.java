@@ -1,6 +1,8 @@
 package com.smartbookmark.index;
 
 import com.smartbookmark.entity.Bookmark;
+import com.smartbookmark.exception.BookmarkSearchException;
+import com.smartbookmark.service.impl.SearchCriteria;
 
 import java.util.List;
 
@@ -9,7 +11,7 @@ import java.util.List;
  */
 public interface BookmarkIndex {
 
-    List<Bookmark> search(String searchQuery);
+    List<Bookmark> searchContent(SearchCriteria searchQuery) throws BookmarkSearchException;
 
     void index(String url);
 
