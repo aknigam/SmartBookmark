@@ -12,7 +12,7 @@ bin/solr -help
 bin/solr <command> -help
 #e.g bin/solr start -help
 
-#creating a new core.
+#creating a new core. (Reference - Create a Core section in apapche-solr-ref--guide-6.1.pdf)
 #choose a solo home directory . Keep an empty sold.xml file there
 #run the following command
 

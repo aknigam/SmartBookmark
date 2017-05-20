@@ -1,0 +1,9 @@
+
+<select id="findStudentById" parameterType="int" resultType=" Student">
+    SELECT STUD_ID AS studId, NAME, EMAIL, DOB
+    FROM STUDENTS WHERE STUD_ID=#{Id}
+</select>
+
+<insert id="insertUserBookmark" parameterType="UserBookmark">
+INSERT INTO STUDENTS(STUD_ID,NAME,EMAIL,DOB) VALUES(#{studId},#{name},#{email},#{dob})
+</insert>

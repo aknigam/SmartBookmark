@@ -1,6 +1,6 @@
 package com.smartbookmark.service.impl;
 
-import com.smartbookmark.entity.Bookmark;
+import com.smartbookmark.entity.UserBookmark;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class SearchCriteria {
     private String searchQuery;
-    private List<Bookmark> bookmarks;
+    private List<UserBookmark> bookmarks;
 
     public String getSearchQuery() {
         return searchQuery;
@@ -19,7 +19,7 @@ public class SearchCriteria {
         this.searchQuery = searchQuery;
     }
 
-    public void setBookmarks(List<Bookmark> bookmarks) {
+    public void setBookmarks(List<UserBookmark> bookmarks) {
         this.bookmarks = bookmarks;
     }
 }

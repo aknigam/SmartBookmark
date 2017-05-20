@@ -1,6 +1,6 @@
 package com.smartbookmark.resource;
 
-import com.smartbookmark.entity.Bookmark;
+import com.smartbookmark.entity.UserBookmark;
 import com.smartbookmark.entity.User;
 import com.smartbookmark.exception.BookmarkSearchException;
 import com.smartbookmark.service.BookmarkService;
@@ -25,27 +25,27 @@ public class BookmarkResource {
     private UserService userService;
 
     @PostMapping
-    void addBookmark(Bookmark bookmark){
+    public void addBookmark(UserBookmark bookmark){
         bookmarkService.addBookmark(bookmark);
     }
 
     @PutMapping
-    void updateBookmark(Bookmark bookmark){
+    void updateBookmark(UserBookmark bookmark){
         bookmarkService.updateBookmark(bookmark);
     }
 
     @DeleteMapping
-    void deleteBookmark(Bookmark bookmark){
+    void deleteBookmark(UserBookmark bookmark){
         bookmarkService.deleteBookmark(bookmark);
     }
 
     @GetMapping(value = "/search")
-    List<Bookmark> searchInUserBookmarks(@RequestParam String searchQuery, User user) throws BookmarkSearchException {
+    List<UserBookmark> searchInUserBookmarks(@RequestParam String searchQuery, User user) throws BookmarkSearchException {
 
         SearchCriteria criteria = new SearchCriteria();
         criteria.setSearchQuery(searchQuery);
 
-        List<Bookmark> bookmarks = userService.getUserBookMarks(user);
+        List<UserBookmark> bookmarks = userService.getUserBookMarks(user);
 
         criteria.setBookmarks(bookmarks);
 

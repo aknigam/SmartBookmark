@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * This class represents a bookmak created by a user.
  */
-public class Bookmark {
+public class UserBookmark {
 
     private User user;
 
@@ -14,6 +14,10 @@ public class Bookmark {
     private List<Integer> tagIds;
 
     private String url;
+
+    public UserBookmark(String url) {
+        this.url = url;
+    }
 
     public User getUser() {
         return user;

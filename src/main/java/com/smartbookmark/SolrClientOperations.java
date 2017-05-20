@@ -12,13 +12,10 @@ import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.util.ContentStreamBase;
 import org.apache.solr.common.util.NamedList;
 import org.apache.solr.common.util.SimpleOrderedMap;
-import org.apache.solr.handler.extraction.ExtractingParams;
 
-import java.io.File;
+
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by a.nigam on 27/01/17.
@@ -55,19 +52,38 @@ public class SolrClientOperations {
 
     private void indexFromUrl() throws IOException, SolrServerException {
 
+        /**
+         *
+         * Look at the config of ExtractionHandler (/update/extract). The content field is mapped to _text_.
+         *
+         * So if someone wants to search the content of an indexed page then the query should look like _text_:*query*
+         *  <requestHandler name="/update/extract"
+             startup="lazy"
+             class="solr.extraction.ExtractingRequestHandler" >
+             <lst name="defaults">
+             <str name="lowernames">true</str>
+             <str name="fmap.meta">ignored_</str>
+             <str name="fmap.content">_text_</str>
+             </lst>
+         </requestHandler>
+         *
+         *
+         */
         ContentStreamUpdateRequest up = new ContentStreamUpdateRequest("/update/extract");
-        String url = "http://stackoverflow.com/questions/28448265/solr-error-document-is-missing-mandatory-uniquekey-field-id";
+        String url = "https://www.toptal.com/java/the-trie-a-neglected-data-structure";
         up.addContentStream(new ContentStreamBase.URLStream(new URL(url)));
-        up.setParam("literal.id", "stackoverflow7");
+        up.setParam("literal.id", "toptal");
         up.setParam("literal.url", url);
+
+
         up.setAction(AbstractUpdateRequest.ACTION.COMMIT, true, true);
-//        NamedList<Object> result = solr.request(up);
-//        Integer status = (Integer) ((SimpleOrderedMap) result.get("responseHeader")).get("status");
+        NamedList<Object> result = solr.request(up);
+        Integer status = (Integer) ((SimpleOrderedMap) result.get("responseHeader")).get("status");
 //        solr.deleteById("stackoverflow1");
 //        solr.deleteById("stackoverflow2");
 //        solr.deleteById("stackoverflow3");
 
-//        solr.commit();
+        solr.commit();
         SolrQuery sorlQuery = new SolrQuery("twitter_title:*solr* AND (id:stackoverflow7 OR id:stackoverflow6)");
 
         QueryResponse rsp = solr.query(sorlQuery);

@@ -1,7 +1,6 @@
 package com.smartbookmark.service;
 
-import com.smartbookmark.entity.Bookmark;
-import com.smartbookmark.entity.User;
+import com.smartbookmark.entity.UserBookmark;
 import com.smartbookmark.exception.BookmarkSearchException;
 import com.smartbookmark.service.impl.SearchCriteria;
 
@@ -13,12 +12,12 @@ import java.util.List;
  */
 public interface BookmarkService {
 
-    void addBookmark(Bookmark bookmark);
+    void addBookmark(UserBookmark bookmark);
 
-    void updateBookmark(Bookmark bookmark);
+    void updateBookmark(UserBookmark bookmark);
 
-    void deleteBookmark(Bookmark bookmark);
+    void deleteBookmark(UserBookmark bookmark);
 
-    List<Bookmark> searchInUserBookmarks(SearchCriteria searchQuery) throws BookmarkSearchException ;
+    List<UserBookmark> searchInUserBookmarks(SearchCriteria searchQuery) throws BookmarkSearchException ;
 
 }
